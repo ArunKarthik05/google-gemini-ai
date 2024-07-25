@@ -17,12 +17,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const PORT = process.env.PORT;
 
-app.get("/",(req,res)=>{
-  res.json({ "message": "Welcome to Arun's Chat model"})
-})
-
 // Get Gemini API Response
-app.post("/api/model", aiController);
+app.post("/chat-with-gemini", aiController);
 
 // App listening
 app.listen(PORT, () => {
