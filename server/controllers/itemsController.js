@@ -37,6 +37,7 @@ async function getProducts(req, res) {
     console.log("Fetcing all products");
   try {
     const result = await connection.query('SELECT * FROM products');
+    console.log(result.rows);
     res.status(200).json(result.rows);
   } catch (err) {
     console.error('Error retrieving products', err.stack);
@@ -53,6 +54,7 @@ async function updateProduct(req, res) {
     if (result.rowCount === 0) {
       return res.status(404).json({ error: 'Product not found' });
     }
+    console.log("Updated Successfully");
     res.status(200).json({
     message : "Updated Successfully",
     resource: result.rows[0]});
@@ -70,6 +72,7 @@ async function deleteProduct(req, res) {
     if (result.rowCount === 0) {
       return res.status(404).json({ error: 'Product not found' });
     }
+    console.log("Product deleted successfully");
     res.status(200).json({ message: 'Product deleted successfully' });
   } catch (err) {
     console.error('Error deleting product', err.stack);
