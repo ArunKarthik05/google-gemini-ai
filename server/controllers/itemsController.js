@@ -19,7 +19,7 @@ export async function createProduct(req, res) {
     }
 
     // Insert the new product if it does not exist
-    const result = await db.query(
+    const result = await connection.query(
       'INSERT INTO products (product_name, price, profit) VALUES ($1, $2, $3) RETURNING *',
       [product_name, price, profit]
     );
