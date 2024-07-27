@@ -4,6 +4,10 @@ import cors from "cors";
 
 //ROUTES
 import itemsRoute from "./routes/itemRoutes.js"
+import orderItemRoutes from "./routes/orderItemsRoutes.js"
+import orderRoutes from "./routes/orderRoutes.js"
+import customerRoutes from "./routes/customerRoutes.js";
+import addOrder from "./routes/addOrder.js";
 
 //CONFIGS
 import { appConfig } from "./config/appConfig.js";
@@ -23,8 +27,7 @@ app.use(
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//ROUTE HANDLER
-
+//ROUTE HANDLERS
 app.get("/",(req,res)=>{
   res.json({"message":"Welcome to Arun's Chat Model"})
 })
@@ -32,7 +35,12 @@ app.get("/",(req,res)=>{
 // Get Gemini API Response
 app.post("/api/model", aiController);
 
+//ROUTES
 app.use("/api/products",itemsRoute);
+app.use("/api/order_items",orderItemRoutes);
+app.use("/api/orders",orderRoutes);
+app.use("/api/customers",customerRoutes);
+app.use("/api/addOrder",addOrder);
 
 // App listening
 app.listen(PORT, () => {

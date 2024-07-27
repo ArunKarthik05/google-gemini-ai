@@ -31,7 +31,6 @@ export async function createProduct(req, res) {
   }
 }
 
-
 // Read (GET)
 async function getProducts(req, res) {
     console.log("Fetcing all products");
